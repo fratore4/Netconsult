@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Netconsult - Piattaforma di Consulenze Online
 
-## Getting Started
+Una piattaforma moderna per prenotare e gestire consulenze online con sistema di videochiamate integrato.
 
-First, run the development server:
+## ✨ Funzionalità Principali
+
+- 🔍 **Sistema di Prenotazione**: Ricerca e prenota consulenze con filtri avanzati
+- 👥 **Gestione Professionisti**: Profili dettagliati e specializzazioni multiple
+- 📹 **Videochiamate HD**: Sistema integrato con Agora.io per chiamate video
+- 🔐 **Autenticazione**: Sistema di login sicuro e gestione utenti
+- 📱 **Design Responsive**: Ottimizzato per desktop, tablet e mobile
+- 💎 **UI Moderna**: Design accattivante con Tailwind CSS
+
+## 🛠 Tecnologie Utilizzate
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS 4
+- **Videochiamate**: Agora.io SDK
+- **Database**: Supabase (configurazione per il futuro)
+- **Deploy**: Render.com + GitHub
+
+## 🚀 Avvio Locale
 
 ```bash
+# Clona il repository
+git clone <url-repository>
+cd consulenze-online
+
+# Installa le dipendenze
+npm install
+
+# Avvia il server di sviluppo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Apri [http://localhost:3000](http://localhost:3000) nel browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌐 Deploy Online
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisiti
+1. Account GitHub
+2. Account Render.com (gratuito)
 
-## Learn More
+### Istruzioni Deploy
+1. Pusha il codice su GitHub
+2. Collega il repository a Render
+3. Configura il build e deploy automatico
 
-To learn more about Next.js, take a look at the following resources:
+Render detecta automaticamente Next.js e configura:
+- **Build Command**: `npm run build`
+- **Start Command**: `npm start`
+- **Node Version**: 18+
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔑 Credenziali Demo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Per testare il sistema, usa una di queste credenziali:
 
-## Deploy on Vercel
+- **Cliente**: demo@netconsult.com / demo123
+- **Consulente**: consulente@netconsult.com / consulente123
+- **Admin**: admin@netconsult.com / admin123
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📋 Variabili d'Ambiente (Opzionali)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Crea un file `.env.local` per la configurazione locale:
+
+```env
+NEXT_PUBLIC_AGORA_APP_ID=your_agora_app_id
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
+```
+
+**Nota**: Il progetto funziona anche senza variabili d'ambiente utilizzando configurazioni demo.
+
+## 🎯 Roadmap
+
+- [ ] Integrazione pagamenti Stripe
+- [ ] Sistema notifiche real-time
+- [ ] Chat testuale durante videochiamate
+- [ ] App mobile React Native
+- [ ] Dashboard analytics per consulenti
+
+## 📞 Supporto
+
+Per supporto tecnico o domande:
+- 📧 Email: supporto@netconsult.com
+- 💬 Chat: Disponibile nella piattaforma
+
+---
+
+Sviluppato con ❤️ per rendere le consulenze online più accessibili e professionali.
