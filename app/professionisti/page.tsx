@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import ProfessionistaCard from "../../components/ProfessionistaCard";
 import Link from 'next/link';
@@ -17,7 +17,7 @@ interface Professionista {
   created_at: string;
 }
 
-export default function Professionisti() {
+function ProfessionistiContent() {
   const [professionisti, setProfessionisti] = useState<Professionista[]>([]);
   const [filteredProfessionisti, setFilteredProfessionisti] = useState<Professionista[]>([]);
   const [loading, setLoading] = useState(true);
@@ -267,5 +267,13 @@ export default function Professionisti() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function Professionisti() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProfessionistiContent />
+    </Suspense>
   );
 } 

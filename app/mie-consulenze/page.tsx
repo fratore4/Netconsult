@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import VideoCall from '../../components/VideoCall';
 import { generateChannelName } from '../../lib/agora-config';
 
 interface Consulenza {
@@ -27,6 +26,7 @@ export default function MieConsulenze() {
   const [selectedConsulenza, setSelectedConsulenza] = useState<Consulenza | null>(null);
   const [isVideoCallActive, setIsVideoCallActive] = useState(false);
   const [activeChannelName, setActiveChannelName] = useState<string>('');
+  const [VideoCallComponent, setVideoCallComponent] = useState<any>(null);
 
   useEffect(() => {
     // Controlla se siamo nel browser prima di accedere a localStorage
@@ -42,6 +42,11 @@ export default function MieConsulenze() {
         // Simula il caricamento delle consulenze dell'utente
         generateMockConsulenze();
       }
+
+      // Carica dinamicamente VideoCall solo nel browser
+      import('../../components/VideoCall').then(module => {
+        setVideoCallComponent(() => module.default);
+      });
     }
   }, []);
 
@@ -157,10 +162,10 @@ export default function MieConsulenze() {
   };
 
   // Se è attiva una videochiamata, mostra solo quella
-  if (isVideoCallActive) {
+  if (isVideoCallActive && VideoCallComponent) {
     return (
       <div className="h-screen">
-        <VideoCall 
+        <VideoCallComponent 
           channelName={activeChannelName}
           isConsultant={false} // L'utente è sempre il cliente
           onCallEnd={endVideoCall}
