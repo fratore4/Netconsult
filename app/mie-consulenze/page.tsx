@@ -21,29 +21,28 @@ interface Consulenza {
 
 export default function MieConsulenze() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [userData, setUserData] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [consulenze, setConsulenze] = useState<Consulenza[]>([]);
   const [selectedConsulenza, setSelectedConsulenza] = useState<Consulenza | null>(null);
   const [isVideoCallActive, setIsVideoCallActive] = useState(false);
   const [activeChannelName, setActiveChannelName] = useState<string>('');
 
-  // Simula il controllo dello stato di login
   useEffect(() => {
-    const checkLoginStatus = () => {
-      // Simula un controllo del login (nella realtà useresti un context o localStorage)
-      const userLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
-      setIsLoggedIn(userLoggedIn);
+    // Controlla se siamo nel browser prima di accedere a localStorage
+    if (typeof window !== 'undefined') {
+      const loginStatus = localStorage.getItem('userLoggedIn') === 'true';
+      setIsLoggedIn(loginStatus);
       
-      if (userLoggedIn) {
+      if (loginStatus) {
+        const storedUserData = localStorage.getItem('userData');
+        if (storedUserData) {
+          setUserData(JSON.parse(storedUserData));
+        }
         // Simula il caricamento delle consulenze dell'utente
         generateMockConsulenze();
       }
-      
-      setIsLoading(false);
-    };
-
-    // Simula un delay di caricamento
-    setTimeout(checkLoginStatus, 1000);
+    }
   }, []);
 
   // Genera consulenze di esempio per la demo
@@ -78,8 +77,11 @@ export default function MieConsulenze() {
       }
     ];
 
-    // Recupera le consulenze reali dal localStorage
-    const consulenzeReali = JSON.parse(localStorage.getItem('userConsulenze') || '[]');
+    // Recupera le consulenze reali dal localStorage solo se siamo nel browser
+    let consulenzeReali: Consulenza[] = [];
+    if (typeof window !== 'undefined') {
+      consulenzeReali = JSON.parse(localStorage.getItem('userConsulenze') || '[]');
+    }
     
     // Combina consulenze mock e reali
     const tutteLeconsulenze = [...mockData, ...consulenzeReali];
@@ -168,18 +170,6 @@ export default function MieConsulenze() {
   }
 
   // Stato di caricamento
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Caricamento...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Utente non loggato
   if (!isLoggedIn) {
     return (
       <div className="min-h-screen bg-gray-50">
