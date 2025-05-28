@@ -1,14 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import VideoCall from '../../components/VideoCall';
 import { generateChannelName } from '../../lib/agora-config';
 
 export default function VideoCallDemo() {
   const [activeCall, setActiveCall] = useState(null);
   const [userType, setUserType] = useState('client'); // 'client' o 'consultant'
+  const [isClientReady, setIsClientReady] = useState(false);
+
+  // Assicurati che siamo nel browser prima di inizializzare
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsClientReady(true);
+    }
+  }, []);
 
   const startDemoCall = () => {
+    // Controllo aggiuntivo per sicurezza
+    if (typeof window === 'undefined') return;
+    
     // Genera un canale demo
     const channelName = generateChannelName('demo-consultant', 'demo-client');
     setActiveCall(channelName);
@@ -17,6 +28,18 @@ export default function VideoCallDemo() {
   const endCall = () => {
     setActiveCall(null);
   };
+
+  // Non renderizzare nulla finché non siamo certi di essere nel browser
+  if (!isClientReady) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Caricamento demo...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (activeCall) {
     return (
