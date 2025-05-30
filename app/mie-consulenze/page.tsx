@@ -59,7 +59,7 @@ export default function MieConsulenze() {
         professionista: {
           nome: 'Sara Bianchi',
           ruolo: 'Marketing Director @ Google',
-          avatar_url: '/favicon.ico'
+          avatar_url: 'https://images.unsplash.com/photo-1494790108755-2616b612b1e7?w=150&h=150&fit=crop&crop=face'
         },
         data: '2024-01-25',
         orario: '14:30',
@@ -72,13 +72,26 @@ export default function MieConsulenze() {
         professionista: {
           nome: 'Marco Rossi',
           ruolo: 'Senior UX Designer @ Adobe',
-          avatar_url: '/favicon.ico'
+          avatar_url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
         },
         data: '2024-01-22',
         orario: '10:00',
         prezzo: 85,
         stato: 'completata',
         tipoConsulenza: 'Design UX/UI e Grafica'
+      },
+      {
+        id: '3',
+        professionista: {
+          nome: 'Luca Moretti',
+          ruolo: 'Data Scientist @ Microsoft',
+          avatar_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face'
+        },
+        data: '2024-01-28',
+        orario: '16:00',
+        prezzo: 100,
+        stato: 'in_attesa',
+        tipoConsulenza: 'Analisi Dati e Machine Learning'
       }
     ];
 
