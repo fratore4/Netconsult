@@ -42,6 +42,7 @@ function ProfessionistiContent() {
       
       try {
         // Usa dati mock per il deploy - previene errori di prerendering
+        // Updated: 12 professionisti con foto reali - versione 2.0
         const mockProfessionisti: Professionista[] = [
           {
             id: '1',
